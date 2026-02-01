@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentru Iubirea Mea 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-light: #ffb3d9;
+            --pink-medium: #ff80bf;
+            --pink-dark: #ff4da6;
+            --pink-bright: #ff1a8c;
+            --white: #fff;
+            --cream: #fff5f9;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffd9ec 50%, #ffb3d9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: floatAnimation 20s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-60px) translateX(-10px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px) rotate(3deg);
+            }
+        }
+
+        /* Pages */
+        .page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            z-index: 1;
+        }
+
+        .page.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Page 1 - Welcome */
+        .welcome-container {
+            text-align: center;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 77, 166, 0.3);
+            border: 3px solid var(--pink-medium);
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cute-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .welcome-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: var(--pink-bright);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 77, 166, 0.3);
+        }
+
+        .welcome-text {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .continue-btn {
+            margin-top: 40px;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--pink-bright), var(--pink-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 26, 140, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 26, 140, 0.5);
+        }
+
+        /* Page 2 - Question */
+        .question-container {
+            text-align: center;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 77, 166, 0.3);
+            border: 3px solid var(--pink-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 179, 217, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .question-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animals-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            font-size: 60px;
+        }
+
+        .animal {
+            animation: wiggle 1.5s infinite;
+        }
+
+        .animal:nth-child(1) { animation-delay: 0s; }
+        .animal:nth-child(2) { animation-delay: 0.3s; }
+        .animal:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .question-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 42px;
+            color: var(--pink-bright);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 77, 166, 0.3);
+        }
+
+        .question-subtitle {
+            font-family: 'Pacifico', cursive;
+            font-size: 42px;
+            color: var(--pink-bright);
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(255, 77, 166, 0.3);
+        }
+
+        .flower-decoration {
+            font-size: 30px;
+            margin: 20px 0;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .answer-btn {
+            padding: 18px 45px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 8px 25px rgba(255, 77, 166, 0.3);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff1a8c, #ff4da6);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 26, 140, 0.5);
+        }
+
+        .btn-maybe {
+            background: linear-gradient(135deg, #ffb3d9, #ff80bf);
+            color: white;
+        }
+
+        .btn-maybe:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 128, 191, 0.5);
+        }
+
+        /* Page 3 - Response Yes */
+        .response-container {
+            text-align: center;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 77, 166, 0.3);
+            border: 3px solid var(--pink-medium);
+        }
+
+        .celebration {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .response-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: var(--pink-bright);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 77, 166, 0.3);
+        }
+
+        .response-text {
+            font-size: 20px;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .hearts-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            font-size: 40px;
+        }
+
+        .heart-beat {
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .heart-beat:nth-child(1) { animation-delay: 0s; }
+        .heart-beat:nth-child(2) { animation-delay: 0.3s; }
+        .heart-beat:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* Heart Rain Effect */
+        .heart-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .falling-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 4s linear;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            color: var(--pink-bright);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-title, .question-title, .response-title {
+                font-size: 36px;
+            }
+
+            .welcome-container, .question-container, .response-container {
+                padding: 40px 25px;
+            }
+
+            .cute-emoji, .animals-row {
+                font-size: 50px;
+            }
+
+            .answer-btn {
+                padding: 15px 35px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="background-decoration" id="bgDecoration"></div>
+
+    <!-- Page 1: Welcome -->
+    <div class="page active" id="page1">
+        <div class="welcome-container">
+            <div class="cute-emoji">🐰💕</div>
+            <h1 class="welcome-title">Bună Puiu! 🌸</h1>
+            <p class="welcome-text">
+                Azi vreau să-ți spun ceva foarte special...
+            </p>
+            <p class="welcome-text">
+                Tu ești lumina vieții mele, zâmbetul care îmi înseninează fiecare zi și căldura care îmi încălzește inima. 
+            </p>
+            <p class="welcome-text">
+                Fiecare moment petrecut cu tine este o amintire prețioasă pe care o păstrez în inima mea. 💖
+            </p>
+            <p class="welcome-text">
+                Am pregătit ceva special pentru tine... 🌹
+            </p>
+            <button class="continue-btn" onclick="goToPage(2)">Continuă 💝</button>
+        </div>
+    </div>
+
+    <!-- Page 2: Question -->
+    <div class="page" id="page2">
+        <div class="question-container">
+            <div class="animals-row">
+                <span class="animal">🐻</span>
+                <span class="animal">🦊</span>
+                <span class="animal">🐼</span>
+            </div>
+            <h1 class="question-title">Vrei să fii</h1>
+            <h2 class="question-subtitle">Valentina mea? 💕</h2>
+            <div class="flower-decoration">🌹 🌺 🌸 🌹 🌺</div>
+            <p class="welcome-text" style="margin-top: 30px;">
+                Vreau să-ți fiu alături în fiecare clipă, să te fac să zâmbești în fiecare zi și să îți arăt cât de mult înseamni pentru mine. 
+            </p>
+            <div class="buttons-container">
+                <button class="answer-btn btn-yes" onclick="goToPage(3)">Da! 💖</button>
+                <button class="answer-btn btn-maybe" onclick="goToPage(4)">Mă mai gândesc... 🤔</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Yes Response -->
+    <div class="page" id="page3">
+        <div class="response-container">
+            <div class="celebration">🎉✨🎊✨🎉</div>
+            <h1 class="response-title">Sunt cel mai fericit! 💕</h1>
+            <div class="hearts-container">
+                <span class="heart-beat">❤️</span>
+                <span class="heart-beat">💖</span>
+                <span class="heart-beat">💝</span>
+            </div>
+            <p class="response-text">
+                M-ai făcut să simt că zbor! Inima mea bate de fericire! 🦋
+            </p>
+            <p class="response-text">
+                Cu tine lângă mine, fiecare zi devine o aventură minunată, fiecare clipă devine o amintire de neuitat, și fiecare bătaie a inimii mele îți aparține. 
+            </p>
+            <p class="response-text">
+                Promit să te fac să zâmbești în fiecare zi, să te îmbrățișez când ai nevoie, să te ascult când vrei să vorbești, și să te iubesc necondiționat, mereu și pentru totdeauna. 💞
+            </p>
+            <div class="animals-row" style="margin-top: 30px;">
+                <span class="animal">🐰</span>
+                <span class="animal">💕</span>
+                <span class="animal">🐻</span>
+            </div>
+            <p class="response-text" style="margin-top: 30px; font-weight: 600; font-size: 22px;">
+                Ești și vei fi mereu dragostea vieții mele! 🌹
+            </p>
+            <div class="signature">Cu toată dragostea mea 💖</div>
+        </div>
+    </div>
+
+    <!-- Page 4: Maybe Response -->
+    <div class="page" id="page4">
+        <div class="response-container">
+            <div class="cute-emoji" style="font-size: 60px;">🥺💕</div>
+            <h1 class="response-title">Te aștept... 💭</h1>
+            <p class="response-text">
+                Înțeleg, iubirea mea. Nu-i nicio grabă! 🌸
+            </p>
+            <p class="response-text">
+                Sentimentele mele pentru tine sunt răbdătoare și sincere. Voi fi aici, așteptând cu inima deschisă și cu speranța că într-o zi vei fi gata să spui "da". 
+            </p>
+            <p class="response-text">
+                Indiferent de cât timp va dura, te voi iubi la fel de mult. Inima mea îți aparține, acum și mereu. 💝
+            </p>
+            <div class="flower-decoration" style="font-size: 40px; margin: 30px 0;">
+                🌹 💕 🌹
+            </div>
+            <p class="response-text" style="font-weight: 600; font-size: 22px;">
+                Când vei fi pregătită, voi fi aici, cu brațele deschise și inima plină de iubire pentru tine. 🤗
+            </p>
+            <div class="signature">Mereu al tău 💖</div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <!-- Pune fișierul "Unwritten - Natasha Bedingfield.mp3" în același folder cu HTML-ul -->
+        <source src="Unwritten - Natasha Bedingfield.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff1a8c, #ff4da6);
+        border: none;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(255, 26, 140, 0.4);
+        z-index: 10000;
+        transition: all 0.3s ease;
+    " onclick="toggleMusic()">
+        🎵
+    </button>
+
+    <script>
+        let musicPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        // Toggle music on/off
+        function toggleMusic() {
+            if (musicPlaying) {
+                music.pause();
+                musicToggle.textContent = '🔇';
+                musicToggle.style.background = 'linear-gradient(135deg, #999, #666)';
+                musicPlaying = false;
+            } else {
+                music.play();
+                musicToggle.textContent = '🎵';
+                musicToggle.style.background = 'linear-gradient(135deg, #ff1a8c, #ff4da6)';
+                musicPlaying = true;
+            }
+        }
+
+        // Try to auto-play music when user interacts with page
+        function startMusic() {
+            if (!musicPlaying) {
+                music.play().then(() => {
+                    musicPlaying = true;
+                    musicToggle.textContent = '🎵';
+                }).catch(e => {
+                    console.log('Autoplay prevented');
+                });
+            }
+        }
+
+        // Start music on first click anywhere
+        document.addEventListener('click', startMusic, { once: true });
+
+        // Create background decorations
+        function createBackgroundDecorations() {
+            const container = document.getElementById('bgDecoration');
+            const decorations = ['🌸', '🌺', '🌹', '💕', '💖', '🦋', '✨', '⭐'];
+            
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.textContent = decorations[Math.floor(Math.random() * decorations.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = (20 + Math.random() * 30) + 'px';
+                element.style.animationDelay = Math.random() * 5 + 's';
+                element.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(element);
+            }
+        }
+
+        // Navigate between pages
+        function goToPage(pageNumber) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+            
+            // Trigger heart rain for YES response
+            if (pageNumber === 3) {
+                setTimeout(createHeartRain, 300);
+            }
+        }
+
+        // Create heart rain effect
+        function createHeartRain() {
+            const container = document.createElement('div');
+            container.className = 'heart-rain';
+            document.body.appendChild(container);
+            
+            const hearts = ['❤️', '💕', '💖', '💗', '💝', '💓', '💞', '💘'];
+            
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'falling-heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = (Math.random() * 2) + 's';
+                    heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+                    container.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 6000);
+                }, i * 80);
+            }
+            
+            setTimeout(() => container.remove(), 10000);
+        }
+
+        // Initialize
+        createBackgroundDecorations();
+
+        // Add continuous floating elements
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                const container = document.getElementById('bgDecoration');
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                const decorations = ['🌸', '🌺', '💕', '🦋', '✨'];
+                element.textContent = decorations[Math.floor(Math.random() * decorations.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = (20 + Math.random() * 20) + 'px';
+                element.style.animationDuration = (10 + Math.random() * 5) + 's';
+                container.appendChild(element);
+                
+                setTimeout(() => element.remove(), 25000);
+            }
+        }, 800);
+    </script>
+</body>
+</html>
